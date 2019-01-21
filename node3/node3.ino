@@ -30,6 +30,15 @@ void setup () {
   delayMS = sensor.min_delay / 1000;
 }
 
+
+HTTPClient http2;
+http2.begin("http://jsonplaceholder.typicode.com/posts");
+http2.addHeader("Content-Type", "application/x-www-form-urlencoded");
+http2.POST("title=foo&body=bar&userId=1");
+http2.writeToStream(&Serial);
+http2.end();
+
+
 void loop() {
   delay(delayMS);
   sensors_event_t event;
